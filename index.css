@@ -106,14 +106,13 @@ a {
 }
 
 #addBook input {
+  padding-left: 10px;
   height: 2rem;
   border-radius: 5px;
 }
 
 .main-title {
   align-self: center;
-
-  /* margin-top: 5%; */
   text-align: center;
 }
 
