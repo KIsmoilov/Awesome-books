@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import date from './modules/dateAndTime.js';
 import Book from './modules/classBook.js';
 
@@ -37,8 +36,23 @@ const addBtnRemoveEvent = () => {
     const { id } = button;
     AddRemove.deleteBook(id);
     AddRemove.addBookToStorage();
-    // eslint-disable-next-line no-use-before-define
-    showBooks();
+    const showAll = () => {
+      formData = JSON.parse(localStorage.getItem('storedBookData'));
+      bookCollection = formData;
+      allBooks.innerHTML = '';
+      formData.forEach((book, index) => {
+        bookCollectionHtml = document.createElement('div');
+        bookCollectionHtml.className = 'book-item';
+        bookCollectionHtml.innerHTML = `
+  
+        <h3 class="book-title"><span>"${book.title}" by ${book.author}</span></h3>
+        <button class="delete_btn" id="${index}">Remove</button>
+      `;
+        allBooks.appendChild(bookCollectionHtml);
+      });
+      addBtnRemoveEvent();
+    };
+    showAll();
   }));
 };
 
@@ -103,3 +117,5 @@ window.onload = () => {
     contactSection.style.display = 'none';
   }
 };
+
+setInterval(date, 1000);
